@@ -58,16 +58,23 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: RaisedButton(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16,right: 16,bottom: 8),
+              child: SizedBox(
 
-              onPressed: null,
-              color: Colors.red,
-              child: Text("GET STARTED",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 10,
-                fontWeight: FontWeight.bold,
-              ),
+                width: double.infinity,
+                height: 50,
+                child: RaisedButton(
+                  onPressed: (){},
+                  child: Text("GET STARTED",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  ),
+                  color: Colors.red,
+                ),
               ),
             ),
           )
