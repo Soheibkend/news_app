@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app/screens/home_screen.dart';
 import 'package:page_view_indicator/page_view_indicator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OnBoardingPage extends StatefulWidget {
 
   @override
   _OnBoardingPageState createState() => _OnBoardingPageState();
 }
-
-
 
 
 class _OnBoardingPageState extends State<OnBoardingPage> {
@@ -49,7 +49,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                           offset: Offset(0,-60),
                         ),
                         Text(content[index]._title,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
@@ -83,7 +83,14 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                 width: double.infinity,
                 height: 50,
                 child: RaisedButton(
-                  onPressed: (){},
+                  onPressed: (){
+                    _updateSeen();
+                    Navigator.push(context,
+                        MaterialPageRoute(
+                            builder: (context) {
+                              return HomePage();
+                        }));
+                  },
                   child: const Text("GET STARTED",
                   style: TextStyle(
                     color: Colors.white,
@@ -101,11 +108,9 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     );
   }
 
-  void initialize () {
-    content.add(  PageModel("Welcome", "making friends is easy as waving your hand back and forth in easy ", Icons.diamond));
-    content.add(  PageModel("Be the first to know", "we'll keep you informed of latest news and events", Icons.newspaper));
-    content.add(  PageModel("Stay connected", "making friends is easy as waving your hand back and forth in easy ", Icons.diamond));
-    content.add(  PageModel("Start", "we'll keep you informed of latest news and events", Icons.star));
+  void _updateSeen() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('seen', true);
   }
 
   Widget _displayPageViewIndicator (int length) {
