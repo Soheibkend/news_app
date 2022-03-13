@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/screens/boarding_page.dart';
 import 'package:news_app/screens/home_screen.dart';
+import 'package:news_app/utilities/app_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
@@ -22,6 +23,7 @@ class NewsApp extends StatelessWidget {
   Widget build (BuildContext context) {
     return MaterialApp(
       home: _screen,
+      theme: AppTheme.appTheme,
       debugShowCheckedModeBanner: false,
     );
   }
