@@ -18,42 +18,94 @@ class _WhatsNewState extends State<WhatsNew> {
         children: [
          _drawHeader(),
           _drawTopStories(),
+          Padding(
+            padding: EdgeInsets.all(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _drawSectionTitle("Recent Updates"),
+                _drawRecentUpdates(),
+              ],
+            ),
+          )
         ],
       ),
-
-
     );
   }
 
-  Widget _drawHeader() {
+  Widget _drawRecentUpdates() {
+    return Column(
+      children: [
+        _drawRecentUpdatesCard(Colors.deepOrange),
+        _drawRecentUpdatesCard(Colors.teal),
+        _drawRecentUpdatesCard(Colors.blueAccent)
+      ],
+    );
+}
+
+  Widget _drawRecentUpdatesCard(Color color) {
     return Container(
-      width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.25,
-      padding: EdgeInsets.only(left:38, right: 38),
-      decoration: BoxDecoration(
-        color: Colors.black87,
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        //crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(loremIpsum(words: 5),
-            style: const TextStyle(
-                color: Colors.white,
-                fontSize: 25,
-                fontWeight: FontWeight.bold
-            ),
-            textAlign: TextAlign.center,
+      child: Padding(
+        padding: EdgeInsets.all(8),
+        child: Card(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height * 0.23,
+                color: Colors.black,
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 10,top:10,bottom: 10),
+                padding: EdgeInsets.only(left:10,top: 6,bottom: 6,right: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(7),
+                  color: color,
+                ),
+
+                child: Text(
+                  "SPORT",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 10,right: 10),
+                child: Text(
+                  loremIpsum(words: 10),
+                  maxLines: 2,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                    fontSize: 16
+                  ),
+                ),
+              ),
+              Container(
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(Icons.access_alarms,
+                      color: Colors.black45,),
+                    ),
+                    Text(
+                      "10 min",
+                      style: TextStyle(
+                        color: Colors.black45,
+                        fontWeight: FontWeight.bold,
+
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
           ),
-          SizedBox(height: 10),
-          Text(loremIpsum(words: 15),
-            style: const TextStyle(
-                color: Colors.white,
-                fontSize: 15,
-            ),
-            textAlign: TextAlign.center,
-          )
-        ],
+        ),
       ),
     );
   }
@@ -145,6 +197,50 @@ class _WhatsNewState extends State<WhatsNew> {
           ),
         ],
 
+      ),
+    );
+  }
+
+  Widget _drawHeader() {
+    return Container(
+      width: double.infinity,
+      height: MediaQuery.of(context).size.height * 0.25,
+      padding: EdgeInsets.only(left:38, right: 38),
+      decoration: BoxDecoration(
+        color: Colors.black87,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        //crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(loremIpsum(words: 5),
+            style: const TextStyle(
+                color: Colors.white,
+                fontSize: 25,
+                fontWeight: FontWeight.bold
+            ),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: 10),
+          Text(loremIpsum(words: 15),
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 15,
+            ),
+            textAlign: TextAlign.center,
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _drawSectionTitle(String text) {
+    return Text(
+      text,
+      textAlign: TextAlign.left,
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        color: Colors.black54,
       ),
     );
   }
